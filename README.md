@@ -6,3 +6,9 @@
     <li><a href="#">Blah</a></li>
   </ol>
 </details>
+
+### Usage
+* Open file via server
+   ```sh
+   python -m http.server <PORT NUMBER e.g. 8001>
+   ```
