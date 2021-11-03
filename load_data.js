@@ -48,7 +48,7 @@ const load_data = d3.csv(DATA_URL).then(function(d){
             d[i]['CRASH DATE_OBJECT'] = new Date(d[i]['CRASH DATE']) // 04/28/2021 => return Date object
             d[i]['CRASH TIME_COMPARE'] = date_obj.setHours(crash_time_aray[0], crash_time_aray[1], 0) // return time value
             d[i]['CRASH DAY_v2'] = d[i]['CRASH DATE_OBJECT'].getDay() // 04/28/2021 => 0-6 map to [Sunday... Friday]
-
+            d[i]['CRASH HOUR'] = parseInt(crash_time_aray[0]) // 4:23 => return 4 [0-23]
             dataset.push(d[i])
         }
     }
