@@ -44,7 +44,7 @@
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         //Load External Data
-        d3.json("nodes.json", function (dataset) {
+        d3.json("got_social_graph.json", function (dataset) {
             //Extract data from dataset
             var nodes = dataset.nodes,
                 links = dataset.links;
@@ -78,7 +78,7 @@
                 .text(function (d) { return d.character; });
             //Add circles to each node
             var circle = node.append("circle")
-                .attr("r", function (d) { return d.influence / 2 > 5 ? d.influence / 2 : 5; })
+                .attr("r", function (d) { return d.influence / 2 > 5 ? d.freq / 2 : 5; })
                 .attr("fill", function (d) { return c10(d.zone * 10); });
             //This function will be executed for every tick of force layout 
             force.on("tick", function () {
