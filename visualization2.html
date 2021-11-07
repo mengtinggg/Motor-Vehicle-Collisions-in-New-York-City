@@ -45,7 +45,7 @@
         var margin = {top: 40, right: 150, bottom: 150, left: 150}
         var chartWidth = screen.width * 0.9 - margin.left - margin.right;
         var chartHeight = screen.height * 0.7 - margin.top - margin.bottom;
-        var axisLabels = {"CRASH YEAR": "Year", "CRASH MONTH": "Month", "CRASH DAY_v2": "Day of Week", "CRASH HOUR": "Hour"};
+        var axisLabels = {"CRASH YEAR": "Year", "CRASH MONTH": "Month", "CRASH DAY_v1": "Day", "CRASH DAY_v2": "Day of Week", "CRASH HOUR": "Hour"};
         var format = d3.format(",");
         var svg;
         
@@ -71,6 +71,9 @@
             }
             if (selection == "CRASH MONTH") {
                 return MONTH;
+            }
+            if (selection == "CRASH DAY_v1") {
+                return d3.range(1, 32);
             }
             if (selection == "CRASH DAY_v2") {
                 return DAY;
