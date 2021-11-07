@@ -45,8 +45,9 @@
         var margin = {top: 40, right: 150, bottom: 150, left: 150}
         var chartWidth = screen.width * 0.9 - margin.left - margin.right;
         var chartHeight = screen.height * 0.7 - margin.top - margin.bottom;
-        var axisLabels = {"CRASH YEAR": "Year", "CRASH MONTH": "Month", "CRASH DAY_v2": "Day of Week", "CRASH HOUR": "Hour"};
+        var axisLabels = {"CRASH YEAR": "Year", "CRASH MONTH": "Month", "CRASH DAY_v1": "Day", "CRASH DAY_v2": "Day of Week", "CRASH HOUR": "Hour"};
         var format = d3.format(",");
+        var svg;
         
         load_data.then(() => {
             makeChart(dataset);
@@ -71,6 +72,9 @@
             if (selection == "CRASH MONTH") {
                 return MONTH;
             }
+            if (selection == "CRASH DAY_v1") {
+                return d3.range(1, 32);
+            }
             if (selection == "CRASH DAY_v2") {
                 return DAY;
             }
@@ -84,6 +88,57 @@
         }
 
         function makeChart(data) {
+            svg = d3.select(".chart")
+                .append("svg")
+                .attr("width", chartWidth + margin.left + margin.right)
+                .attr("height", chartHeight + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .attr("id", "svg");
+
+            var canvas = d3.select(".chart")
+                .style("width", chartWidth)
+                .style("height", chartHeight);
+
+            var xAxis = svg.append("g")
+                .attr("id", "x-axis")
+                .attr("transform", "translate(0, " + chartHeight + ")")
+            .append("text")
+                .attr("id", "x-axis-text")
+                .attr("x", chartWidth/2)
+                .attr("y", 40)
+                .style("text-anchor", "middle")
+                .style("font-weight", "bold");
+
+            var yAxis = svg.append("g")
+                .attr("id", "y-axis")
+            .append("text")
+                .attr("id", "y-axis-text")
+                .attr("x", -chartHeight/2)
+                .attr("y", -80)
+                .attr("transform", "rotate(-90)")
+                .style("text-anchor", "middle")
+                .style("font-weight", "bold");
+
+            const defs = svg.append("defs");
+            const linearGradient = defs.append("linearGradient")
+                .attr("id", "linear-gradient");
+
+            legend = svg.append("g")
+                .attr("id", "legendTicks")
+                .attr("transform", `translate(0, ${chartHeight + 120})`)
+
+            legend.append("text")
+                .attr("id", "legendText")
+                .attr("x", chartWidth/2)
+                .attr("dy", -10)
+                .style("text-anchor", "middle")
+                .style("font-weight", "bold");
+
+            update(data);
+        }
+
+        function update(data) {
             var x_axis_selection = document.getElementById("x_axis_selection").value;
             var y_axis_selection = document.getElementById("y_axis_selection").value;
             var value_selection_incident = document.getElementById("value_selection_incident").value;
@@ -97,13 +152,6 @@
             var value_min = d3.min(aggregated_data.map(d => d[2]));
             var value_max = d3.max(aggregated_data.map(d => d[2]));
 
-            var svg = d3.select(".chart")
-                .append("svg")
-                .attr("width", chartWidth + margin.left + margin.right)
-                .attr("height", chartHeight + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
             var x = d3.scaleBand()
                 .domain(x_domain)
                 .range([0, chartWidth]);
@@ -116,10 +164,6 @@
                 .interpolator(t => d3.interpolateInferno(1 - t))
                 .domain([value_min, value_max])
                 .nice();
-
-            var canvas = d3.select(".chart")
-                .style("width", chartWidth)
-                .style("height", chartHeight);
 
             // tooltip properties
             var tooltip = d3.select(".chart")
@@ -153,44 +197,39 @@
                     .style("opacity", 0)
             }
 
-            var rectangles = svg.selectAll("rect")
+            var rectangles = svg.selectAll(".rect")
                 .data(aggregated_data);
 
             var enter = rectangles
                 .join("rect")
-                .attr("width", x.bandwidth())
-                .attr("height", y.bandwidth());
-
-            enter.merge(rectangles)
-                .attr("x", function(d) {return x(getValueWord(d[0], x_axis_selection));})
-                .attr("y", function(d) {return y(getValueWord(d[1], y_axis_selection));})
-                .style("fill", function(d) {return c(d[2]);})
+                .attr("class", "rect")
                 .on("mouseover", mouseover)
                 .on("mouseout", mouseout);
 
-            // X Axis created on the bottom
-            var xAxis = svg.append("g")
-                .attr("id", "x-axis")
-                .attr("transform", "translate(0, " + chartHeight + ")")
-                .call(d3.axisBottom(x))
-            .append("text")
-                .text(axisLabels[x_axis_selection])
-                .attr("x", chartWidth/2)
-                .attr("y", 40)
-                .style("text-anchor", "middle")
-                .style("font-weight", "bold");
+            enter.merge(rectangles).transition().duration(1000)
+                .attr("width", x.bandwidth())
+                .attr("height", y.bandwidth())
+                .attr("x", function(d) {return x(getValueWord(d[0], x_axis_selection));})
+                .attr("y", function(d) {return y(getValueWord(d[1], y_axis_selection));})
+                .style("fill", function(d) {return c(d[2]);});
 
-            // Y Axis created on the left
-            var yAxis = svg.append("g")
-                .attr("id", "y-axis")
+            // Update X Axis
+            svg.select("#x-axis")
+                .transition().duration(1000)
+                .call(d3.axisBottom(x))
+
+            svg.select("#x-axis-text")
+                .transition().duration(1000)
+                .text(axisLabels[x_axis_selection])
+
+            // Update Y Axis
+            svg.select("#y-axis")
+                .transition().duration(1000)
                 .call(d3.axisLeft(y))
-            .append("text")
+
+            svg.select("#y-axis-text")
+                .transition().duration(1000)
                 .text(axisLabels[y_axis_selection])
-                .attr("x", -chartHeight/2)
-                .attr("y", -80)
-                .attr("transform", "rotate(-90)")
-                .style("text-anchor", "middle")
-                .style("font-weight", "bold");
 
             // legend axis linear scale using domain from colour sequential scale
             legendAxis = d3.scaleLinear()
@@ -199,10 +238,11 @@
 
             legendBarHeight = 10;
 
-            const defs = svg.append("defs");
-            const linearGradient = defs.append("linearGradient")
-                .attr("id", "linear-gradient");
+            // const defs = svg.select("defs");
+            const linearGradient = svg.select("#linear-gradient")
+                // .attr("id", "linear-gradient");
             
+            // linearGradient.selectAll("stop").remove()
             linearGradient.selectAll("stop")
                 .data(c.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: c(t) })))
                 .enter().append("stop")
@@ -210,20 +250,15 @@
                 .attr("stop-color", d => d.color);
 
             // Heatmap legend created with rectangle filled with linear gradient, tick marks and legend title
-            legend = svg.append("g")
-                .attr("transform", `translate(0, ${chartHeight + 120})`)
+            legend = svg.select("#legendTicks").transition().duration(1000)
                 .call(d3.axisBottom(legendAxis)
                     .tickSize(legendBarHeight + 5));
-            legend.append("rect")
+            svg.select("#legendTicks").append("rect")
                 .attr("width", chartWidth)
                 .attr("height", legendBarHeight)
                 .style("fill", "url(#linear-gradient)")
-            legend.append("text")
-                .text("Number of " + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident))
-                .attr("x", chartWidth/2)
-                .attr("dy", -10)
-                .style("text-anchor", "middle")
-                .style("font-weight", "bold");
+            legend.select("#legendText").transition().duration(1000)
+                .text("Number of " + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident));
         }
 
         var x_axis_options = d3.select("#x_axis_selection")
@@ -249,8 +284,7 @@
 
         d3.selectAll(".optionDropdown")
             .on("change", function() {
-                d3.select(".chart").selectAll("*").remove();
-                makeChart(dataset);
+                update(dataset);
             })
 
         function switch_axes() {
@@ -260,8 +294,7 @@
                 .property("selected", function(d){ return d === y_axis_selection; });
             y_axis_options
                 .property("selected", function(d){ return d === x_axis_selection; });
-            d3.select(".chart").selectAll("*").remove();
-            makeChart(dataset);
+            update(dataset);
         }
     </script>
 </body>

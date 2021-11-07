@@ -26,7 +26,7 @@
 </head>
 
 <body>
-  <script type="text/javascript">
+  <script>
     //Set margins and sizes
     var margin = {
       top: 20,
@@ -48,6 +48,9 @@
       //Extract data from dataset
       var nodes = dataset.nodes,
         links = dataset.links;
+
+      console.log(nodes);
+      console.log(links);
       //Create Force Layout
       var force = d3.layout.force()
         .size([width, height])
