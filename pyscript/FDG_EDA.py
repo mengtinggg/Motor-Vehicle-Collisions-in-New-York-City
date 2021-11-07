@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import pandas as pd
 import numpy as np
 import json
@@ -130,5 +127,5 @@ data = {}
 data["nodes"] = influence
 data["links"] = relationships
 
-with open('nodeLinks.json', 'w') as file:
+with open('/json/nodeLinks.json', 'w') as file:
     json.dump(data, file, indent = 4)
