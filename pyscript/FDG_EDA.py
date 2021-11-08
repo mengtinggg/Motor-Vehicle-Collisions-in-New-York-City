@@ -3,8 +3,10 @@ import numpy as np
 import json
 from itertools import combinations as c
 
+print('starting script')
+
 # ===== READ CSV ===== #
-df = pd.read_csv("/data/Motor_Vehicle_Collisions_-_Crashes.csv")
+df = pd.read_csv("data/Motor_Vehicle_Collisions_-_Crashes.csv")
 
 # ===== Get just vehicles collided, borough and number of injuries/deaths ===== #
 filtered = df[['BOROUGH']].join(df.loc[:, "VEHICLE TYPE CODE 1":"VEHICLE TYPE CODE 5"]).join(df.loc[:, "NUMBER OF PERSONS INJURED":"NUMBER OF MOTORIST KILLED"])
@@ -20,7 +22,7 @@ filtered['weight'] = filtered.loc[:,"NUMBER OF PERSONS INJURED":"NUMBER OF MOTOR
 
 # ===== Drop columns where weight = 0. ===== #
 # Note that there are records with weight = 0. However, since we want to visualise the relationship of collisions, we take them out.
-print(filtered['weight'].value_counts())
+print('weight dist freq:\n' , filtered['weight'].value_counts())
 
 # drop weight = 0
 filtered = filtered[filtered['weight'] > 0]
@@ -30,7 +32,7 @@ filtered = filtered[filtered['weight'] > 0]
 # Dataset is stratified by borough to ensure no biasness
 # Sampling is done because when producing the relastionships between the collided vehicles, not only is it computationally expensive, it also takes very long for the visualisation to load
 from sklearn.model_selection import train_test_split
-filtered, _ = train_test_split(filtered, test_size=0.95, stratify=filtered[['BOROUGH']], random_state = 42)
+filtered, _ = train_test_split(filtered, test_size=0.97, stratify=filtered[['BOROUGH']], random_state = 42)
 
 print(filtered['weight'].unique())
 
@@ -62,13 +64,14 @@ print(f'max: {vehicles_melt["freq"].max()} & min: {vehicles_melt["freq"].min()}'
 # ===== To penalise large values, we will log transform the `freq` column. ===== #
 # We will use log(x + 1) instead to ensure small transformed values wont be rounded off to 0.
 # Multiply the results by 3 to expand the differences after reducing large values
-vehicles_melt['freq_log'] = round((np.log(vehicles_melt.freq) + 1) * 3, 3)
+vehicles_melt['freq_log'] = round((np.log(vehicles_melt["freq"]) + 1) * 3, 3)
 
 # ===== ID-ing each vehicle per Borough and vehicle type by index ===== #
 vehicles_melt['id'] = vehicles_melt.index
 
 # ===== Group 'BOROUGH as 'zone' ===== #
 boroughs = list(vehicles_melt["BOROUGH"].unique())
+print('unqiue boroughs', boroughs)
 boroughs_dict = {k: v for v, k in enumerate(boroughs)}
 
 # map above dict to corresponding values under zone
@@ -76,8 +79,7 @@ vehicles_melt["zone"] = vehicles_melt["BOROUGH"].map(boroughs_dict)
 
 # ===== Store relationship df in vehicle_influence.json file. Keep only 'source', 'target', 'weight' columns. ===== #
 # orient=record will make each df row as an {object} by itself, instead of {vehicle:..,...,.., type:..,...,... } all tgt
-vehicles_melt.loc[:, ['vehicle','freq_log','id','zone']].to_json('/json/vehicle_influence.json', orient='records')
-
+vehicles_melt.loc[:, ['vehicle','freq_log','id','zone']].to_json('json/vehicle_influence.json', orient='records')
 
 # ===== FIND RELATIONSHIPTS: By identifying the source and target vehicles ===== #
 # First, only get the Borough, Vehicle Type Codes and weight
@@ -116,16 +118,18 @@ relationship[['source','target']] = pd.DataFrame(relationship["ids combined"].to
 
 # ===== Store relationship df in relationship.json file. Keep only 'source', 'target', 'weight' columns. ===== #
 # orient=record will make each df row as an {object} by itself, instead of {vehicle:..,...,.., type:..,...,... } all tgt
-relationship.loc[:, ['source','target','weight']].to_json('/json/relationship.json', orient='records')
+relationship.loc[:, ['source','target','weight']].to_json('json/relationship.json', orient='records')
 
 # ===== Final JSON output file with nodes and links together ===== #
 import json
 
-influence = json.load(open("/json/vehicle_influence.json", 'r'))
-relationships = json.load(open("/json/relationship.json", 'r'))
+influence = json.load(open("json/vehicle_influence.json", 'r'))
+relationships = json.load(open("json/relationship.json", 'r'))
 data = {}
 data["nodes"] = influence
 data["links"] = relationships
 
-with open('/json/nodeLinks.json', 'w') as file:
+with open('json/nodeLinks.json', 'w') as file:
     json.dump(data, file, indent = 4)
+
+print('end script')

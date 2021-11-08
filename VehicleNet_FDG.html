@@ -35,16 +35,16 @@
       left: 50
     };
     var width = 960 - margin.left - margin.right;
-    var height = 700 - margin.top - margin.bottom;
+    var height = 740 - margin.top - margin.bottom;
     //Load Color Scale
     var c10 = d3.scale.category10();
     //Create an SVG element and append it to the DOM
     var svgElement = d3.select("body")
-      .append("svg").attr({ "width": width + margin.left + margin.right + 80, "height": height + margin.top + margin.bottom })
+      .append("svg").attr({ "width": width + margin.left + margin.right + 310, "height": height + margin.top + margin.bottom })
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     //Load External Data
-    d3.json("/json/nodeLinks.json", function (dataset) {
+    d3.json("json/nodeLinks.json", function (dataset) {
       //Extract data from dataset
       var nodes = dataset.nodes,
         links = dataset.links;
@@ -53,18 +53,18 @@
       console.log(links);
       //Create Force Layout
       var force = d3.layout.force()
-        .size([width, height])
+        .size([width - 210, height - 210])
         .nodes(nodes)
         .links(links)
-        .gravity(0.05)
-        .charge(-200)
-        .linkDistance(200);
+        .gravity(0.1) // the larger, the closer
+        .charge(-140) // the larger, the closer
+        .linkDistance(220);
       //Add links to SVG
       var link = svgElement.selectAll(".link")
         .data(links)
         .enter()
         .append("line")
-        .attr("stroke-width", function (d) { return d.weight / 10; })
+        .attr("stroke-width", function (d) { return d.weight / 7; })
         .attr("class", "link");
       //Add nodes to SVG
       var node = svgElement.selectAll(".node")
@@ -75,7 +75,7 @@
         .call(force.drag);
       //Add labels to each node
       var label = node.append("text")
-        .attr("dx", 12)
+        .attr("dx", 15)
         .attr("dy", "0.35em")
         .attr("font-size", function (d) { return d.freq_log * 1.5 > 9 ? d.freq_log * 1.5 : 9; })
         .text(function (d) { return d.vehicle; });
@@ -83,6 +83,25 @@
       var circle = node.append("circle")
         .attr("r", function (d) { return d.freq_log / 2 > 4 ? d.freq_log / 2 : 4; })
         .attr("fill", function (d) { return c10(d.zone * 10); });
+      var zones = {'BRONX': 0, 'BROOKLYN': 1, 'MANHATTAN': 2, 'QUEENS': 3, 'STATEN ISLAND': 4}
+      console.log(Object.entries(zones))
+      // Build Legend
+      var legend = svgElement.selectAll(".legend")
+        .data(c10.domain())
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+      legend.append("rect")
+        .attr("x", width + 185)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", function (d, i) { return c10(Object.entries(zones)[i][1] * 10); });
+      legend.append("text")
+        .attr("x", width + 210)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .text(function (d, i) { return Object.entries(zones)[i][0]; });
       //This function will be executed for every tick of force layout 
       force.on("tick", function () {
         //Set X and Y of node
@@ -97,6 +116,7 @@
         //Shift node a little
         node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
       });
+
       //Start the force layout calculation
       force.start();
     });
