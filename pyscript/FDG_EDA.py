@@ -71,6 +71,7 @@ vehicles_melt['id'] = vehicles_melt.index
 
 # ===== Group 'BOROUGH as 'zone' ===== #
 boroughs = list(vehicles_melt["BOROUGH"].unique())
+print('unqiue boroughs', boroughs)
 boroughs_dict = {k: v for v, k in enumerate(boroughs)}
 
 # map above dict to corresponding values under zone
