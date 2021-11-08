@@ -125,7 +125,7 @@ function makeChart(data) {
         .attr('opacity', 0)
         .on('mousemove', function (event) {
 
-            var year = Math.floor((x.invert(event.pageX - 160)))
+            var year = Math.floor((x.invert(event.pageX - 360)))
 
             tooltip.transition()
                 .style("opacity", .9)
