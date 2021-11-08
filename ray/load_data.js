@@ -149,7 +149,7 @@ const load_data = d3.csv(DATA_URL).then(function(d){
             dataset.push(d[i])
         }
     }
-    word_map_data["QUEENS"][2021].push({year: "2021", word: "Prescription Medication", size: 0})
+    word_map_data["QUEENS"][2021].push({year: "2021", word: "Prescription medication", size: 0})
 
     console.log('Sample output (can reference column from below): ')
     console.log(dataset[0])
