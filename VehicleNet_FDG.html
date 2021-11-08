@@ -35,12 +35,12 @@
       left: 50
     };
     var width = 960 - margin.left - margin.right;
-    var height = 700 - margin.top - margin.bottom;
+    var height = 740 - margin.top - margin.bottom;
     //Load Color Scale
     var c10 = d3.scale.category10();
     //Create an SVG element and append it to the DOM
     var svgElement = d3.select("body")
-      .append("svg").attr({ "width": width + margin.left + margin.right + 80, "height": height + margin.top + margin.bottom })
+      .append("svg").attr({ "width": width + margin.left + margin.right + 250, "height": height + margin.top + margin.bottom})
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     //Load External Data
@@ -53,11 +53,11 @@
       console.log(links);
       //Create Force Layout
       var force = d3.layout.force()
-        .size([width, height])
+        .size([width - 200 , height - 200])
         .nodes(nodes)
         .links(links)
         .gravity(0.1) // the larger, the closer
-        .charge(-160) // the larger, the closer
+        .charge(-140) // the larger, the closer
         .linkDistance(210);
       //Add links to SVG
       var link = svgElement.selectAll(".link")
