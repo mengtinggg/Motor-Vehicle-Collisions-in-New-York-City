@@ -90,16 +90,16 @@
         .attr("class", "legend")
         .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
       legend.append("rect")
-        .attr("x", width - 18)
+        .attr("x", width)
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", function (d) { return c10(d.zone * 10); });
       legend.append("text")
-        .attr("x", width - 24)
+        .attr("x", width - 20)
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
-        .text(function (d) { return d.vehicle; });
+        .text(function (d) { return d; });
       //This function will be executed for every tick of force layout 
       force.on("tick", function () {
         //Set X and Y of node
