@@ -7,19 +7,24 @@
     <title>Heatmap</title>
     Y <select id="y_axis_selection"></select> <button onclick="switch_axes()">&#8652;</button> 
     X <select id="x_axis_selection"></select>
-    Incident <select id="value_selection_incident" class="optionDropdown">
-        <option value="INJURED">Injured</option>
-        <option value="KILLED">Killed</option>
-    </select>
-    Personnel <select id="value_selection_personnel" class="optionDropdown">
-        <option value="PERSONS">All</option>
-        <option value="CYCLIST">Cyclist</option>
-        <option value="MOTORIST">Motorist</option>
-        <option value="PEDESTRIANS">Pedestrians</option>
-    </select>
-
+    <span style="float: right;">
+        Incident <select id="value_selection_incident" class="optionDropdown">
+            <option value="INJURED">Injured</option>
+            <option value="KILLED">Killed</option>
+        </select>
+        Personnel <select id="value_selection_personnel" class="optionDropdown">
+            <option value="PERSONS">All</option>
+            <option value="CYCLIST">Cyclist</option>
+            <option value="MOTORIST">Motorist</option>
+            <option value="PEDESTRIANS">Pedestrians</option>
+        </select>
+        Sum or Average <select id="calc_sum_avg" class="optionDropdown">
+            <option value="sum">Sum</option>
+            <option value="avg">Average</option>
+        </select>
+    </span>
     <style>
-        h1 {
+        h2 {
             font-family: sans-serif;
             text-align: center;
         }
@@ -39,7 +44,7 @@
     <script type="text/javascript" src = 'load_data.js'></script>
 </head>
 <body>
-    <h1>Heatmap</h1>
+    <h2 id="title_text"></h2>
     <div class="chart"></div>
     <script>
         var margin = {top: 40, right: 150, bottom: 150, left: 150}
@@ -144,9 +149,16 @@
             var value_selection_incident = document.getElementById("value_selection_incident").value;
             var value_selection_personnel = document.getElementById("value_selection_personnel").value;
             var value_selection = "NUMBER OF " + value_selection_personnel + " " + value_selection_incident;
+            var calc_sum_avg = document.getElementById("calc_sum_avg").value;
+            var sum_avg_value = calc_sum_avg == "avg" ? "Average " : "Total ";
+            document.getElementById("title_text").innerHTML = sum_avg_value + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident) + " (" + axisLabels[y_axis_selection] + " vs " + axisLabels[x_axis_selection] + ")";
 
-            var aggregated_data = d3.flatRollup(data, v => d3.sum(v, d => d[value_selection]), d => d[x_axis_selection], d => d[y_axis_selection])
-
+            if (calc_sum_avg == "avg") {
+                var aggregated_data = d3.flatRollup(data, v => d3.format(",.3f")(d3.mean(v, d => d[value_selection])), d => d[x_axis_selection], d => d[y_axis_selection])
+            } else {
+                var aggregated_data = d3.flatRollup(data, v => d3.sum(v, d => d[value_selection]), d => d[x_axis_selection], d => d[y_axis_selection])
+            }
+            
             var x_domain = getDomain(x_axis_selection);
             var y_domain = getDomain(y_axis_selection);
             var value_min = d3.min(aggregated_data.map(d => d[2]));
@@ -185,7 +197,7 @@
                     .style("opacity", .9);
                 tooltip.html("<b>"+ axisLabels[y_axis_selection] +": </b>" + getValueWord(d[1], y_axis_selection) + ", \
                     <b>"+ axisLabels[x_axis_selection] +": </b>" + getValueWord(d[0], x_axis_selection) + "<br> \
-                    <b>"+ "Number of " + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident) +": </b>" + format(d[2]))
+                    <b>"+ sum_avg_value + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident) +": </b>" + format(d[2]))
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY - 28) + "px");
             }
@@ -258,7 +270,7 @@
                 .attr("height", legendBarHeight)
                 .style("fill", "url(#linear-gradient)")
             legend.select("#legendText").transition().duration(1000)
-                .text("Number of " + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident));
+                .text(sum_avg_value + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident));
         }
 
         var x_axis_options = d3.select("#x_axis_selection")
