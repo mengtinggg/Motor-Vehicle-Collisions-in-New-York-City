@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heatmap</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     Y <select id="y_axis_selection"></select> <button onclick="switch_axes()">&#8652;</button> 
     X <select id="x_axis_selection"></select>
     <span style="float: right;">
@@ -219,10 +220,10 @@
                 .on("mouseout", mouseout);
 
             enter.merge(rectangles).transition().duration(1000)
-                .attr("width", x.bandwidth())
-                .attr("height", y.bandwidth())
-                .attr("x", function(d) {return x(getValueWord(d[0], x_axis_selection));})
-                .attr("y", function(d) {return y(getValueWord(d[1], y_axis_selection));})
+                .attr("width", x.bandwidth() - 2)
+                .attr("height", y.bandwidth() - 2)
+                .attr("x", function(d) {return x(getValueWord(d[0], x_axis_selection)) + 1;})
+                .attr("y", function(d) {return y(getValueWord(d[1], y_axis_selection)) + 2;})
                 .style("fill", function(d) {return c(d[2]);});
 
             // Update X Axis
