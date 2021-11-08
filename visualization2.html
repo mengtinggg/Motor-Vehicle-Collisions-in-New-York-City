@@ -24,7 +24,7 @@
         </select>
     </span>
     <style>
-        h1 {
+        h2 {
             font-family: sans-serif;
             text-align: center;
         }
@@ -44,7 +44,7 @@
     <script type="text/javascript" src = 'load_data.js'></script>
 </head>
 <body>
-    <h1>Heatmap</h1>
+    <h2 id="title_text"></h2>
     <div class="chart"></div>
     <script>
         var margin = {top: 40, right: 150, bottom: 150, left: 150}
@@ -151,6 +151,7 @@
             var value_selection = "NUMBER OF " + value_selection_personnel + " " + value_selection_incident;
             var calc_sum_avg = document.getElementById("calc_sum_avg").value;
             var sum_avg_value = calc_sum_avg == "avg" ? "Average " : "Total ";
+            document.getElementById("title_text").innerHTML = sum_avg_value + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident) + " (" + axisLabels[y_axis_selection] + " vs " + axisLabels[x_axis_selection] + ")";
 
             if (calc_sum_avg == "avg") {
                 var aggregated_data = d3.flatRollup(data, v => d3.format(",.3f")(d3.mean(v, d => d[value_selection])), d => d[x_axis_selection], d => d[y_axis_selection])
