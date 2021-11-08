@@ -155,7 +155,7 @@
             document.getElementById("title_text").innerHTML = sum_avg_value + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident) + " (" + axisLabels[y_axis_selection] + " vs " + axisLabels[x_axis_selection] + ")";
 
             if (calc_sum_avg == "avg") {
-                var aggregated_data = d3.flatRollup(data, v => d3.format(",.3f")(d3.mean(v, d => d[value_selection])), d => d[x_axis_selection], d => d[y_axis_selection])
+                var aggregated_data = d3.flatRollup(data, v => d3.format(",.4f")(d3.mean(v, d => d[value_selection])), d => d[x_axis_selection], d => d[y_axis_selection])
             } else {
                 var aggregated_data = d3.flatRollup(data, v => d3.sum(v, d => d[value_selection]), d => d[x_axis_selection], d => d[y_axis_selection])
             }
