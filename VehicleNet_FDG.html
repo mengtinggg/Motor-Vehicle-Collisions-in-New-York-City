@@ -40,7 +40,7 @@
     var c10 = d3.scale.category10();
     //Create an SVG element and append it to the DOM
     var svgElement = d3.select("body")
-      .append("svg").attr({ "width": width + margin.left + margin.right + 300, "height": height + margin.top + margin.bottom })
+      .append("svg").attr({ "width": width + margin.left + margin.right + 310, "height": height + margin.top + margin.bottom })
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     //Load External Data
@@ -92,15 +92,15 @@
         .attr("class", "legend")
         .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
       legend.append("rect")
-        .attr("x", width + 10)
+        .attr("x", width + 185)
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", function (d, i) { return c10(Object.entries(zones)[i][1] * 10); });
       legend.append("text")
-        .attr("x", width + 5)
+        .attr("x", width + 210)
         .attr("y", 9)
         .attr("dy", ".35em")
-        .style("text-anchor", "end")
+        .style("text-anchor", "start")
         .text(function (d, i) { return Object.entries(zones)[i][0]; });
       //This function will be executed for every tick of force layout 
       force.on("tick", function () {
