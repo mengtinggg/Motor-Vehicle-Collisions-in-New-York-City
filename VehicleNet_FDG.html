@@ -53,12 +53,12 @@
       console.log(links);
       //Create Force Layout
       var force = d3.layout.force()
-        .size([width - 200, height - 200])
+        .size([width - 210, height - 210])
         .nodes(nodes)
         .links(links)
         .gravity(0.1) // the larger, the closer
         .charge(-140) // the larger, the closer
-        .linkDistance(210);
+        .linkDistance(220);
       //Add links to SVG
       var link = svgElement.selectAll(".link")
         .data(links)
