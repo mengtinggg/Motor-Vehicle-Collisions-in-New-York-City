@@ -40,7 +40,7 @@
     var c10 = d3.scale.category10();
     //Create an SVG element and append it to the DOM
     var svgElement = d3.select("body")
-      .append("svg").attr({ "width": width + margin.left + margin.right + 300, "height": height + margin.top + margin.bottom})
+      .append("svg").attr({ "width": width + margin.left + margin.right + 300, "height": height + margin.top + margin.bottom })
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     //Load External Data
@@ -53,7 +53,7 @@
       console.log(links);
       //Create Force Layout
       var force = d3.layout.force()
-        .size([width - 200 , height - 200])
+        .size([width - 200, height - 200])
         .nodes(nodes)
         .links(links)
         .gravity(0.1) // the larger, the closer
@@ -64,7 +64,7 @@
         .data(links)
         .enter()
         .append("line")
-        .attr("stroke-width", function (d) { return d.weight / 10; })
+        .attr("stroke-width", function (d) { return d.weight / 7; })
         .attr("class", "link");
       //Add nodes to SVG
       var node = svgElement.selectAll(".node")
@@ -83,6 +83,23 @@
       var circle = node.append("circle")
         .attr("r", function (d) { return d.freq_log / 2 > 4 ? d.freq_log / 2 : 4; })
         .attr("fill", function (d) { return c10(d.zone * 10); });
+       // Build Legend
+       var legend = svgElement.selectAll(".legend")
+        .data(c10.domain())
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+      legend.append("rect")
+        .attr("x", width - 18)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", function (d) { return c10(d.zone * 10); });
+      legend.append("text")
+        .attr("x", width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function (d) { return d.vehicle; });
       //This function will be executed for every tick of force layout 
       force.on("tick", function () {
         //Set X and Y of node
@@ -97,6 +114,7 @@
         //Shift node a little
         node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
       });
+
       //Start the force layout calculation
       force.start();
     });
