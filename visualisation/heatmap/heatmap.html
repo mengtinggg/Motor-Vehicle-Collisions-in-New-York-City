@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap</title>
+    <link href="../../css/loader.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    Y <select id="y_axis_selection"></select> <button onclick="switch_axes()">&#8652;</button> 
+    X <select id="x_axis_selection"></select>
+    <span style="float: right;">
+        Incident <select id="value_selection_incident" class="optionDropdown">
+            <option value="INJURED">Injured</option>
+            <option value="KILLED">Killed</option>
+        </select>
+        Personnel <select id="value_selection_personnel" class="optionDropdown">
+            <option value="PERSONS">All</option>
+            <option value="CYCLIST">Cyclist</option>
+            <option value="MOTORIST">Motorist</option>
+            <option value="PEDESTRIANS">Pedestrians</option>
+        </select>
+        Sum or Average <select id="calc_sum_avg" class="optionDropdown">
+            <option value="sum">Sum</option>
+            <option value="avg">Average</option>
+        </select>
+    </span>
+    <style>
+        h2 {
+            font-family: sans-serif;
+            text-align: center;
+        }
+        svg {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        svg text {
+            font-size: 12px;
+            font-family: sans-serif;
+            fill: black;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="text/javascript" src = 'load_data.js'></script>
+</head>
+<body>
+    <h2 id="title_text"></h2>
+
+    
+    <div id="loader"></div>
+    <div style="display:none;" id="mapviz" class="animate-bottom">
+        <div class="chart"></div>
+    </div>
+
+    <script>
+        var margin = {top: 40, right: 150, bottom: 150, left: 150}
+        var chartWidth = screen.width * 0.9 - margin.left - margin.right;
+        var chartHeight = screen.height * 0.7 - margin.top - margin.bottom;
+        var axisLabels = {"CRASH YEAR": "Year", "CRASH MONTH": "Month", "CRASH DAY_v1": "Day", "CRASH DAY_v2": "Day of Week", "CRASH HOUR": "Hour"};
+        var format = d3.format(",");
+        var svg;
+        
+        load_data.then(() => {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("mapviz").style.display = "block";
+            makeChart(dataset);
+        })
+
+        function getValueWord(number, selection) {
+            if (selection == "CRASH MONTH") {
+                return MONTH[number];
+            }
+            if (selection == "CRASH DAY_v2") {
+                return DAY[number];
+            }
+            return number;
+        }
+
+        function getDomain(selection) {
+            if (selection == "CRASH YEAR") {
+                var domain_min = d3.min(dataset.map(d => d["CRASH YEAR"]));
+                var domain_max = d3.max(dataset.map(d => d["CRASH YEAR"]));
+                return d3.range(domain_min, domain_max + 1);
+            }
+            if (selection == "CRASH MONTH") {
+                return MONTH;
+            }
+            if (selection == "CRASH DAY_v1") {
+                return d3.range(1, 32);
+            }
+            if (selection == "CRASH DAY_v2") {
+                return DAY;
+            }
+            if (selection == "CRASH HOUR") {
+                return d3.range(0, 24);
+            }
+        }
+
+        function toTitleCase(str) {
+            return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+        }
+
+        function makeChart(data) {
+            svg = d3.select(".chart")
+                .append("svg")
+                .attr("width", chartWidth + margin.left + margin.right)
+                .attr("height", chartHeight + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .attr("id", "svg");
+
+            var canvas = d3.select(".chart")
+                .style("width", chartWidth)
+                .style("height", chartHeight);
+
+            var xAxis = svg.append("g")
+                .attr("id", "x-axis")
+                .attr("transform", "translate(0, " + chartHeight + ")")
+            .append("text")
+                .attr("id", "x-axis-text")
+                .attr("x", chartWidth/2)
+                .attr("y", 40)
+                .style("text-anchor", "middle")
+                .style("font-weight", "bold");
+
+            var yAxis = svg.append("g")
+                .attr("id", "y-axis")
+            .append("text")
+                .attr("id", "y-axis-text")
+                .attr("x", -chartHeight/2)
+                .attr("y", -80)
+                .attr("transform", "rotate(-90)")
+                .style("text-anchor", "middle")
+                .style("font-weight", "bold");
+
+            const defs = svg.append("defs");
+            const linearGradient = defs.append("linearGradient")
+                .attr("id", "linear-gradient");
+
+            legend = svg.append("g")
+                .attr("id", "legendTicks")
+                .attr("transform", `translate(0, ${chartHeight + 120})`)
+
+            legend.append("text")
+                .attr("id", "legendText")
+                .attr("x", chartWidth/2)
+                .attr("dy", -10)
+                .style("text-anchor", "middle")
+                .style("font-weight", "bold");
+
+            update(data);
+        }
+
+        function update(data) {
+            var x_axis_selection = document.getElementById("x_axis_selection").value;
+            var y_axis_selection = document.getElementById("y_axis_selection").value;
+            var value_selection_incident = document.getElementById("value_selection_incident").value;
+            var value_selection_personnel = document.getElementById("value_selection_personnel").value;
+            var value_selection = "NUMBER OF " + value_selection_personnel + " " + value_selection_incident;
+            var calc_sum_avg = document.getElementById("calc_sum_avg").value;
+            var sum_avg_value = calc_sum_avg == "avg" ? "Average " : "Total ";
+            document.getElementById("title_text").innerHTML = sum_avg_value + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident) + " (" + axisLabels[y_axis_selection] + " vs " + axisLabels[x_axis_selection] + ")";
+
+            if (calc_sum_avg == "avg") {
+                var aggregated_data = d3.flatRollup(data, v => d3.format(",.4f")(d3.mean(v, d => d[value_selection])), d => d[x_axis_selection], d => d[y_axis_selection])
+            } else {
+                var aggregated_data = d3.flatRollup(data, v => d3.sum(v, d => d[value_selection]), d => d[x_axis_selection], d => d[y_axis_selection])
+            }
+            
+            var x_domain = getDomain(x_axis_selection);
+            var y_domain = getDomain(y_axis_selection);
+            var value_min = d3.min(aggregated_data.map(d => d[2]));
+            var value_max = d3.max(aggregated_data.map(d => d[2]));
+
+            var x = d3.scaleBand()
+                .domain(x_domain)
+                .range([0, chartWidth]);
+
+            var y = d3.scaleBand()
+                .domain(y_domain)
+                .range([0, chartHeight]);
+
+            var c = d3.scaleSequential()
+                .interpolator(t => d3.interpolateInferno(1 - t))
+                .domain([value_min, value_max])
+                .nice();
+
+            // tooltip properties
+            var tooltip = d3.select(".chart")
+                .append("div")
+                .style("opacity", 0)
+                .attr("class", "tooltip")
+                .style("background-color", "white")
+                .style("border", "solid")
+                .style("border-width", "2px")
+                .style("border-radius", "5px")
+                .style("padding", "5px")
+                .style("position", "absolute")
+                .style("pointer-events", "none");
+
+            // create mouseover event which will show the tooltip
+            var mouseover = function(event,d) {
+                tooltip.transition()
+                    .duration(100)
+                    .style("opacity", .9);
+                tooltip.html("<b>"+ axisLabels[y_axis_selection] +": </b>" + getValueWord(d[1], y_axis_selection) + ", \
+                    <b>"+ axisLabels[x_axis_selection] +": </b>" + getValueWord(d[0], x_axis_selection) + "<br> \
+                    <b>"+ sum_avg_value + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident) +": </b>" + format(d[2]))
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            }
+
+            // create mouseout event which will hide the tooltip
+            var mouseout = function (d) {
+                tooltip.transition()
+                    .duration(100)
+                    .style("opacity", 0)
+            }
+
+            var rectangles = svg.selectAll(".rect")
+                .data(aggregated_data);
+
+            var enter = rectangles
+                .join("rect")
+                .attr("class", "rect")
+                .on("mouseover", mouseover)
+                .on("mouseout", mouseout);
+
+            enter.merge(rectangles).transition().duration(1000)
+                .attr("width", x.bandwidth() - 2)
+                .attr("height", y.bandwidth() - 2)
+                .attr("x", function(d) {return x(getValueWord(d[0], x_axis_selection)) + 1;})
+                .attr("y", function(d) {return y(getValueWord(d[1], y_axis_selection)) + 2;})
+                .style("fill", function(d) {return c(d[2]);});
+
+            // Update X Axis
+            svg.select("#x-axis")
+                .transition().duration(1000)
+                .call(d3.axisBottom(x))
+
+            svg.select("#x-axis-text")
+                .transition().duration(1000)
+                .text(axisLabels[x_axis_selection])
+
+            // Update Y Axis
+            svg.select("#y-axis")
+                .transition().duration(1000)
+                .call(d3.axisLeft(y))
+
+            svg.select("#y-axis-text")
+                .transition().duration(1000)
+                .text(axisLabels[y_axis_selection])
+
+            // legend axis linear scale using domain from colour sequential scale
+            legendAxis = d3.scaleLinear()
+                .domain(c.domain())
+                .range([0, chartWidth])
+
+            legendBarHeight = 10;
+
+            // const defs = svg.select("defs");
+            const linearGradient = svg.select("#linear-gradient")
+                // .attr("id", "linear-gradient");
+            
+            // linearGradient.selectAll("stop").remove()
+            linearGradient.selectAll("stop")
+                .data(c.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: c(t) })))
+                .enter().append("stop")
+                .attr("offset", d => d.offset)
+                .attr("stop-color", d => d.color);
+
+            // Heatmap legend created with rectangle filled with linear gradient, tick marks and legend title
+            legend = svg.select("#legendTicks").transition().duration(1000)
+                .call(d3.axisBottom(legendAxis)
+                    .tickSize(legendBarHeight + 5));
+            svg.select("#legendTicks").append("rect")
+                .attr("width", chartWidth)
+                .attr("height", legendBarHeight)
+                .style("fill", "url(#linear-gradient)")
+            legend.select("#legendText").transition().duration(1000)
+                .text(sum_avg_value + toTitleCase(value_selection_personnel) + " " + toTitleCase(value_selection_incident));
+        }
+
+        var x_axis_options = d3.select("#x_axis_selection")
+            .attr("class", "optionDropdown")
+            .selectAll('myOptions')
+                .data(Object.keys(axisLabels))
+            .enter()
+                .append('option')
+            .text(function (d) { return axisLabels[d]; })
+            .attr("value", function (d) { return d; });
+
+        var y_axis_options = d3.select("#y_axis_selection")
+            .attr("class", "optionDropdown")
+            .selectAll('myOptions')
+                .data(Object.keys(axisLabels))
+            .enter()
+                .append('option')
+            .text(function (d) { return axisLabels[d]; })
+            .attr("value", function (d) { return d; });
+            
+        x_axis_options
+            .property("selected", function(d){ return d === "CRASH MONTH"; });
+
+        d3.selectAll(".optionDropdown")
+            .on("change", function() {
+                update(dataset);
+            })
+
+        function switch_axes() {
+            var x_axis_selection = document.getElementById("x_axis_selection").value;
+            var y_axis_selection = document.getElementById("y_axis_selection").value;
+            x_axis_options
+                .property("selected", function(d){ return d === y_axis_selection; });
+            y_axis_options
+                .property("selected", function(d){ return d === x_axis_selection; });
+            update(dataset);
+        }
+    </script>
+</body>
+</html>

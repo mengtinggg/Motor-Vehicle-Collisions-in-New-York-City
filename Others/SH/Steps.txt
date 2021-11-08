@@ -1,0 +1,36 @@
+https://medium.com/@mbostock/command-line-cartography-part-1-897aa8f8ca2c
+
+Download Map: https://www2.census.gov/geo/tiger/GENZ2020/shp/
+New York file: cb_2020_36_tract_500k.zip   (36 is FIPS state codes for New York)
+To see the map shape by dragging shp file: https://mapshaper.org/ 
+
+
+ShapeFile: Convert SHP to GEOJSON File
+npm install -g shapefile
+
+shp2json cb_2020_36_tract_500k.zip -o ny.json
+
+
+d3-geo-protection
+npm install d3-geo-projection
+
+<script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
+
+
+https://www.oreilly.com/library/view/interactive-data-visualization/9781449340223/ch12.html
+https://github.com/veltman/d3-stateplane
+https://www.d3indepth.com/geographic/
+
+
+MAP BOROUGH: https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm
+https://data.cityofnewyork.us/City-Government/NYC-Street-Centerline-CSCL-/exjm-f27b
+
+
+https://bl.ocks.org/mbostock/4060606
+https://observablehq.com/@efrymire/gridding-map-files
+
+https://observablehq.com/@d3/threshold-choropleth
+
+https://slawomir-zaziablo.github.io/range-slider/
