@@ -47,25 +47,25 @@ var factor10 = ["Unspecified", "80", "1"]
 
 var factor_map = {
     ...Object.fromEntries(
-        factor1.map(key => [key, "Improper Driving"]),
+        factor1.map(key => [key, "Improper driving"]),
     ),
     ...Object.fromEntries(
-        factor2.map(key => [key, "Distraction from external vehicles and persons"])
+        factor2.map(key => [key, "External vehicles/persons"])
     ),
     ...Object.fromEntries(
         factor3.map(key => [key, "Disability and illness"])
     ),
     ...Object.fromEntries(
-        factor4.map(key => [key, "Under influence of illegal drugs and alcohol"])
+        factor4.map(key => [key, "Illegal drugs and alcohol"])
     ),
     ...Object.fromEntries(
-        factor5.map(key => [key, "Prescription Medication"])
+        factor5.map(key => [key, "Prescription medication"])
     ),
     ...Object.fromEntries(
         factor6.map(key => [key, "Driver unconscious"])
     ),
     ...Object.fromEntries(
-        factor7.map(key => [key, "Distraction from use of devices and food consumption"])
+        factor7.map(key => [key, "Device use and eating"])
     ),
     ...Object.fromEntries(
         factor8.map(key => [key, "Poor road conditions"])
@@ -73,9 +73,9 @@ var factor_map = {
     ...Object.fromEntries(
         factor9.map(key => [key, "Defects in vehicle"])
     ),
-    ...Object.fromEntries(
-        factor10.map(key => [key, "Unknown"])
-    )
+    // ...Object.fromEntries(
+    //     factor10.map(key => [key, "Unknown"])
+    // )
 }
 var word_map_data = {}
 var myWords = []
@@ -130,17 +130,18 @@ const load_data = d3.csv(DATA_URL).then(function(d){
             var factor_word_obj;
             
             for (let factor_col of factor_cols) {
-                if (d[i][factor_col] !== "" ) {
+                if (d[i][factor_col] !== "" && d[i][factor_col] !== "Unspecified" && d[i][factor_col] !== "80" && d[i][factor_col] !== "1") {
                     mapped_factor = factor_map[d[i][factor_col]]
                     contributing_factors.push(mapped_factor)
                     factor_word_obj = word_map_data[d[i]['BOROUGH']][d[i]['CRASH YEAR']].find(x=>x.word == mapped_factor)
                     if (factor_word_obj === undefined) {
-                        word_map_data[d[i]['BOROUGH']][d[i]['CRASH YEAR']].push({word: mapped_factor, size: 1})
+                        word_map_data[d[i]['BOROUGH']][d[i]['CRASH YEAR']].push({year: crash_date_array[2], word: mapped_factor, size: 1})
                     } else {
                         factor_word_obj.size += 1
                     }
                 }
             }
+
             // remove duplicate mapped factors from array
             contributing_factors = [... new Set(contributing_factors)]
             d[i]['CONTRIBUTING FACTORS'] = contributing_factors
@@ -148,6 +149,7 @@ const load_data = d3.csv(DATA_URL).then(function(d){
             dataset.push(d[i])
         }
     }
+    word_map_data["QUEENS"][2021].push({year: "2021", word: "Prescription Medication", size: 0})
 
     console.log('Sample output (can reference column from below): ')
     console.log(dataset[0])
