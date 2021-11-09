@@ -5,8 +5,14 @@ from itertools import combinations as c
 
 print('starting script')
 
+# ===== URL Links ==== #
+raw_data_file = "../../../data/Motor_Vehicle_Collisions_-_Crashes.csv"
+vehicle_influence_json = "json/vehicle_influence.json"
+relationship_json = "json/relationship.json"
+output_nodelink_json = "json/nodeLinks.json"
+
 # ===== READ CSV ===== #
-df = pd.read_csv("data/Motor_Vehicle_Collisions_-_Crashes.csv")
+df = pd.read_csv(raw_data_file)
 
 # ===== Get just vehicles collided, borough and number of injuries/deaths ===== #
 filtered = df[['BOROUGH']].join(df.loc[:, "VEHICLE TYPE CODE 1":"VEHICLE TYPE CODE 5"]).join(df.loc[:, "NUMBER OF PERSONS INJURED":"NUMBER OF MOTORIST KILLED"])
@@ -79,7 +85,7 @@ vehicles_melt["zone"] = vehicles_melt["BOROUGH"].map(boroughs_dict)
 
 # ===== Store relationship df in vehicle_influence.json file. Keep only 'source', 'target', 'weight' columns. ===== #
 # orient=record will make each df row as an {object} by itself, instead of {vehicle:..,...,.., type:..,...,... } all tgt
-vehicles_melt.loc[:, ['vehicle','freq_log','id','zone']].to_json('json/vehicle_influence.json', orient='records')
+vehicles_melt.loc[:, ['vehicle','freq_log','id','zone']].to_json(vehicle_influence_json, orient='records')
 
 # ===== FIND RELATIONSHIPTS: By identifying the source and target vehicles ===== #
 # First, only get the Borough, Vehicle Type Codes and weight
@@ -118,18 +124,18 @@ relationship[['source','target']] = pd.DataFrame(relationship["ids combined"].to
 
 # ===== Store relationship df in relationship.json file. Keep only 'source', 'target', 'weight' columns. ===== #
 # orient=record will make each df row as an {object} by itself, instead of {vehicle:..,...,.., type:..,...,... } all tgt
-relationship.loc[:, ['source','target','weight']].to_json('json/relationship.json', orient='records')
+relationship.loc[:, ['source','target','weight']].to_json(relationship_json, orient='records')
 
 # ===== Final JSON output file with nodes and links together ===== #
 import json
 
-influence = json.load(open("json/vehicle_influence.json", 'r'))
-relationships = json.load(open("json/relationship.json", 'r'))
+influence = json.load(open(vehicle_influence_json, 'r'))
+relationships = json.load(open(relationship_json, 'r'))
 data = {}
 data["nodes"] = influence
 data["links"] = relationships
 
-with open('json/nodeLinks.json', 'w') as file:
+with open(output_nodelink_json, 'w') as file:
     json.dump(data, file, indent = 4)
 
 print('end script')
