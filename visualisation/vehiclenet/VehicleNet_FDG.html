@@ -122,21 +122,28 @@
         var nodes = dataset.nodes;
         var links = dataset.links;
         console.log(nodes);
+        console.log('links');
         console.log(links);
 
         var resNodes = nodes.filter(obj => obj.zone == zonesObj['BRONX']);
         console.log('resNodes');
         console.log(resNodes)
 
-        // var resLinks = links.filter(({ source, target }) =>
-        //   resNodes.some(include => include.id === source || include.id === target)
-        // );
-        // console.log('resLinks');
-        // console.log(resLinks)
+        var resLinks = links.filter(({ source, target }) =>
+          resNodes.some(include => include.id === source || include.id === target)
+        );
+        console.log('resLinks');
+        console.log(resLinks)
 
-        var resLinks2 = link.filter(item => resNodes.every(x => item.source === x.id || item.target === x.id));
-        console.log('resLinks2');
-        console.log(resLinks2)
+        // var resLinks2 = links.filter(item => resNodes.every(x => item.source === x.id || item.target === x.id));
+        // console.log('resLinks2');
+        // console.log(resLinks2)
+
+        console.log(
+          links.filter(
+            (set => item => set.has(item.id))(new Set(resNodes.map(item => item.source)))
+          )
+        )
 
         //Create Force Layout
         var force = d3.layout.force()
