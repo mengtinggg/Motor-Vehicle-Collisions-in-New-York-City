@@ -67,12 +67,12 @@
       <button class="btn btn-secondary">
         <input type="radio" name="options" id="option3" autocomplete="off"> STATEN ISLAND
       </button> -->
-    <button type="button" class="btn btn-dark">ALL</button>
-    <button type="button" class="btn btn-primary">BRONX</button>
-    <button type="button" class="btn btn-success">BROOKLYN</button>
-    <button type="button" class="btn btn-warning">MANHATTEN</button>
-    <button type="button" class="btn btn-danger">QUEENS</button>
-    <button type="button" class="btn btn-secondary">STATEN ISLAND</button>
+    <button type="button" class="btn btn-dark" value = 'all' onclick="makeChart(this.value);">ALL</button>
+    <button type="button" class="btn btn-primary" value = 'BRONX' onclick="makeChart(this.value);">BRONX</button>
+    <button type="button" class="btn btn-success" value = 'BROOKLYN' onclick="makeChart(this.value);">BROOKLYN</button>
+    <button type="button" class="btn btn-warning" value = 'MANHATTAN' onclick="makeChart(this.value);">MANHATTAN</button>
+    <button type="button" class="btn btn-danger" value = 'QUEENS' onclick="makeChart(this.value);">QUEENS</button>
+    <button type="button" class="btn btn-secondary" value = 'STATEN ISLAND' onclick="makeChart(this.value);">STATEN ISLAND</button>
     <!-- </div>
   </section> -->
 
@@ -94,6 +94,7 @@
       .append("svg").attr({ "width": width + margin.left + margin.right + 330, "height": height + margin.top + margin.bottom })
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      
     //Load External Data
     d3.json(DATA_URL, function (dataset) {
       //Extract data from dataset
@@ -102,6 +103,9 @@
 
       console.log(nodes);
       console.log(links);
+
+      var result=nodes.filter(obj=> obj.zone == 0);
+      console.log(result)
       //Create Force Layout
       var force = d3.layout.force()
         .size([width + 100, height + 10])
