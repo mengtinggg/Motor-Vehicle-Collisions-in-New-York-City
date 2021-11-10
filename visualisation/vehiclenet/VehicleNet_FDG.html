@@ -37,7 +37,6 @@
     .btn-secondary:focus:active {
       background-color: rgb(171, 98, 204);
       border-color: rgb(171, 98, 204);
-      outline-color: red;
     }
 
     .btn {
@@ -70,8 +69,8 @@
       </button> -->
   <button type="button" class="btn btn-dark" value='all' onclick="makeChart(this.value);">ALL</button>
   <button type="button" class="btn btn-primary" value='BRONX' onclick="makeChart(this.value);">BRONX</button>
-  <button type="button" class="btn btn-success" value='BROOKLYN' onclick="makeChart(this.value);">BROOKLYN</button>
-  <button type="button" class="btn btn-warning" value='MANHATTAN' onclick="makeChart(this.value);">MANHATTAN</button>
+  <button type="button" class="btn btn-success" value='MANHATTAN' onclick="makeChart(this.value);">MANHATTAN</button>
+  <button type="button" class="btn btn-warning" value='BROOKLYN' onclick="makeChart(this.value);">BROOKLYN</button>
   <button type="button" class="btn btn-danger" value='QUEENS' onclick="makeChart(this.value);">QUEENS</button>
   <button type="button" class="btn btn-secondary" value='STATEN ISLAND' onclick="makeChart(this.value);">STATEN
     ISLAND</button>
@@ -120,28 +119,17 @@
         var nodes = dataset.nodes,
           links = dataset.links;
         console.log(nodes);
-        console.log('links');
         console.log(links);
 
-        var resNodes = nodes.filter(obj => obj.zone == zonesObj['BRONX']);
-        console.log('resNodes');
-        console.log(resNodes)
+        if (val !== 'all') {
+          var nodes = nodes.filter(obj => obj.zone == zonesObj[val]);
+          console.log('resNodes');
+          console.log(nodes)
 
-        var resLinks = links.filter(({ source, target }) =>
-          resNodes.some(include => include.id === source || include.id === target)
-        );
-        console.log('resLinks');
-        console.log(resLinks)
-
-        // var resLinks2 = links.filter(item => resNodes.every(x => item.source === x.id || item.target === x.id));
-        // console.log('resLinks2');
-        // console.log(resLinks2)
-
-        console.log(
-          links.filter(
-            (set => item => set.has(item.id))(new Set(resNodes.map(item => item.source)))
-          )
-        )
+          var links = links.filter(({ source, target }) => nodes.some(include => include.id === source || include.id === target));
+          console.log('resLinks');
+          console.log(links)
+        };
 
         //Create Force Layout
         var force = d3.layout.force()
