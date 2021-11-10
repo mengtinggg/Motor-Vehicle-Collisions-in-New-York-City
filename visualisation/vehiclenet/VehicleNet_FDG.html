@@ -76,6 +76,7 @@
         .data(nodes)
         .enter()
         .append("g")
+<<<<<<< HEAD
         .attr("class", "node")
         .call(force.drag);
       //Add labels to each node
@@ -125,6 +126,104 @@
       //Start the force layout calculation
       force.start();
     });
+=======
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      //Load External Data
+      d3.json(DATA_URL, function (dataset) {
+        //Extract data from dataset
+        var nodes = dataset.nodes;
+        var links = dataset.links;
+        console.log(nodes);
+        console.log(links);
+
+        var resNodes = nodes.filter(obj => obj.zone == zonesObj['BRONX']);
+        console.log('resNodes');
+        console.log(resNodes)
+
+        // var resLinks = links.filter(({ source, target }) =>
+        //   resNodes.some(include => include.id === source || include.id === target)
+        // );
+        // console.log('resLinks');
+        // console.log(resLinks)
+
+        var resLinks2 = link.filter(item => resNodes.every(x => item.source === x.id || item.target === x.id));
+        console.log('resLinks2');
+        console.log(resLinks2)
+
+        //Create Force Layout
+        var force = d3.layout.force()
+          .size([width + 100, height + 10])
+          .nodes(nodes)
+          .links(links)
+          .gravity(0.1) // the larger, the closer
+          .charge(-140) // the larger, the closer
+          .linkDistance(220);
+        //Add links to SVG
+        var link = svgElement.selectAll(".link")
+          .data(links)
+          .enter()
+          .append("line")
+          .attr("stroke-width", function (d) { return d.weight / 7; })
+          .attr("class", "link");
+        //Add nodes to SVG
+        var node = svgElement.selectAll(".node")
+          .data(nodes)
+          .enter()
+          .append("g")
+          .attr("class", "node")
+          .call(force.drag);
+        //Add labels to each node
+        var label = node.append("text")
+          .attr("dx", 15)
+          .attr("dy", "0.35em")
+          .attr("font-size", function (d) { return d.freq_log * 1.5 > 9 ? d.freq_log * 1.5 : 9; })
+          .text(function (d) { return d.vehicle; });
+        //Add circles to each node
+        var circle = node.append("circle")
+          .attr("r", function (d) { return d.freq_log / 2 > 4 ? d.freq_log / 2 : 4; })
+          .attr("fill", function (d) { return c10(d.zone * 10); });
+
+        if (val == 'all') {
+          // Build Legend
+          var legend = svgElement.selectAll(".legend")
+            .data(c10.domain())
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+          legend.append("rect")
+            .attr("x", width + 185)
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill", function (d, i) { return c10(Object.entries(zonesObj)[i][1] * 10); });
+          legend.append("text")
+            .attr("x", width + 210)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .attr("font-weight", 500)
+            .style("text-anchor", "start")
+            .text(function (d, i) { return Object.entries(zonesObj)[i][0]; });
+        }
+        //This function will be executed for every tick of force layout 
+        force.on("tick", function () {
+          //Set X and Y of node
+          node.attr("r", function (d) { return d.freq_log; })
+            .attr("cx", function (d) { return d.x; })
+            .attr("cy", function (d) { return d.y; });
+          //Set X, Y of link
+          link.attr("x1", function (d) { return d.source.x; })
+          link.attr("y1", function (d) { return d.source.y; })
+          link.attr("x2", function (d) { return d.target.x; })
+          link.attr("y2", function (d) { return d.target.y; });
+          //Shift node a little
+          node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+        });
+
+        //Start the force layout calculation
+        force.start();
+      })
+    };
+>>>>>>> parent of 8b05fe0 (Update VehicleNet_FDG.html)
   </script>
 </body>
 
