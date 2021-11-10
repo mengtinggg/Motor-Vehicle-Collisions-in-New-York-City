@@ -104,7 +104,9 @@
     // Heatmap function
     function makeChart(val) {
 
-      // console.log(val);
+      console.log(val);
+
+      //Remove created svg, if any
       d3.select("svg").remove();
 
       //Create an SVG element and append it to the DOM
@@ -122,8 +124,19 @@
         console.log(nodes);
         console.log(links);
 
-        var result = nodes.filter(obj => obj.zone == zonesObj['BRONX']);
-        console.log(result)
+        var resNodes = nodes.filter(obj => obj.zone == zonesObj['BRONX']);
+        console.log('resNodes');
+        console.log(resNodes)
+
+        // var resLinks = links.filter(({ source, target }) =>
+        //   resNodes.some(include => include.id === source || include.id === target)
+        // );
+        // console.log('resLinks');
+        // console.log(resLinks)
+
+        var resLinks2 = link.filter(item => resNodes.every(x => item.source === x.id || item.target === x.id));
+        console.log('resLinks2');
+        console.log(resLinks2)
 
         //Create Force Layout
         var force = d3.layout.force()
