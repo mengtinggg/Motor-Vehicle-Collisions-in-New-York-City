@@ -53,8 +53,12 @@
       var nodes = dataset.nodes,
         links = dataset.links;
 
-      console.log(nodes);
-      console.log(links);
+      // var zonesObj = {'BRONX': 0, 'BROOKLYN': 1, 'MANHATTAN': 2, 'QUEENS': 3, 'STATEN ISLAND': 4}
+      // var resNodes = nodes.filter(obj => obj.zone == zonesObj['BROOKLYN']).map(obj => obj.id) // get array of ID of particular zone
+      // var resNodes2 = links.filter(item =>resNodes.includes(item.source) || resNodes.includes(item.target)) // filter links.source and target
+      // console.log(resNodes);
+      // console.log(resNodes2);
+
       //Create Force Layout
       var force = d3.layout.force()
         .size([width + 100, height + 10])

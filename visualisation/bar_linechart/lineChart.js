@@ -13,7 +13,7 @@ Reusable Functions:
 
 
 */
-tooltip_num = 330
+tooltip_num = 300
 load_data.then(() => {
     document.getElementById("loader").style.display = "none";
     document.getElementById("mapviz").style.display = "block";
