@@ -121,15 +121,26 @@
         console.log(nodes);
         console.log(links);
 
-        if (val !== 'all') {
-          var nodes = nodes.filter(obj => obj.zone == zonesObj[val]);
-          console.log('resNodes');
-          console.log(nodes)
+        // // my code -> Can only product BRONX graph
+        // if (val !== 'all') {
+        //   nodes = nodes.filter(obj => obj.zone == zonesObj[val]);
+        //   console.log('resNodes');
+        //   console.log(nodes)
 
-          var links = links.filter(({ source, target }) => nodes.some(include => include.id === source || include.id === target));
-          console.log('resLinks');
-          console.log(links)
-        };
+        //   links = links.filter(({ source, target }) => nodes.some(include => include.id === source || include.id === target));
+        //   console.log('resLinks');
+        //   console.log(links)
+        // };
+
+        // // shao your code here
+        // if (val !== 'all') {
+        //   nodes = nodes.filter(obj => obj.zone == zonesObj[val]).map(obj => obj.id) // get array of ID of particular zone
+        //   links = links.filter(item => nodes.includes(item.source) || nodes.includes(item.target)) // filter links.source and target
+        //   console.log('resNodes');
+        //   console.log(nodes);
+        //   console.log('resLinks');
+        //   console.log(links);
+        // }
 
         //Create Force Layout
         var force = d3.layout.force()
