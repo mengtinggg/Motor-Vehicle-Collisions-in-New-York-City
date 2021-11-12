@@ -78,8 +78,10 @@
   </section> -->
 
   <script>
+    // declare url to retrieve json file
+    var DATA_URL;
+
     //Set margins and sizes
-    var DATA_URL = "../../data/json/nodeLinks.json"
     var margin = {
       top: 20,
       bottom: 50,
@@ -113,6 +115,10 @@
         .attr({ "width": width + margin.left + margin.right + 330, "height": height + margin.top + margin.bottom })
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      DATA_URL = `../../data/json/${val}_nodeLinks.json`;
+      console.log(DATA_URL);
+
       //Load External Data
       d3.json(DATA_URL, function (dataset) {
         //Extract data from dataset

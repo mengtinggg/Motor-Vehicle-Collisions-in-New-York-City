@@ -1,0 +1,1915 @@
+{
+    "nodes": [
+        {
+            "vehicle": "2 dr sedan",
+            "freq_log": 3.0,
+            "id": 466,
+            "zone": 4
+        },
+        {
+            "vehicle": "4 dr sedan",
+            "freq_log": 8.375,
+            "id": 467,
+            "zone": 4
+        },
+        {
+            "vehicle": "BUS",
+            "freq_log": 5.079,
+            "id": 468,
+            "zone": 4
+        },
+        {
+            "vehicle": "Bike",
+            "freq_log": 5.079,
+            "id": 469,
+            "zone": 4
+        },
+        {
+            "vehicle": "Dump",
+            "freq_log": 3.0,
+            "id": 470,
+            "zone": 4
+        },
+        {
+            "vehicle": "FIRE",
+            "freq_log": 3.0,
+            "id": 471,
+            "zone": 4
+        },
+        {
+            "vehicle": "MOTORCYCLE",
+            "freq_log": 5.079,
+            "id": 472,
+            "zone": 4
+        },
+        {
+            "vehicle": "Motorcycle",
+            "freq_log": 6.296,
+            "id": 473,
+            "zone": 4
+        },
+        {
+            "vehicle": "OTHER",
+            "freq_log": 3.0,
+            "id": 474,
+            "zone": 4
+        },
+        {
+            "vehicle": "PASSENGER VEHICLE",
+            "freq_log": 15.992,
+            "id": 475,
+            "zone": 4
+        },
+        {
+            "vehicle": "PICK-UP TRUCK",
+            "freq_log": 3.0,
+            "id": 476,
+            "zone": 4
+        },
+        {
+            "vehicle": "Pick-up Truck",
+            "freq_log": 5.079,
+            "id": 477,
+            "zone": 4
+        },
+        {
+            "vehicle": "SPORT UTILITY / STATION WAGON",
+            "freq_log": 12.997,
+            "id": 478,
+            "zone": 4
+        },
+        {
+            "vehicle": "Sedan",
+            "freq_log": 15.022,
+            "id": 479,
+            "zone": 4
+        },
+        {
+            "vehicle": "Station Wagon/Sport Utility Vehicle",
+            "freq_log": 13.102,
+            "id": 480,
+            "zone": 4
+        },
+        {
+            "vehicle": "UNKNOWN",
+            "freq_log": 3.0,
+            "id": 481,
+            "zone": 4
+        },
+        {
+            "vehicle": "VAN",
+            "freq_log": 5.079,
+            "id": 482,
+            "zone": 4
+        },
+        {
+            "vehicle": "trailer",
+            "freq_log": 3.0,
+            "id": 483,
+            "zone": 4
+        },
+        {
+            "vehicle": "4 dr sedan",
+            "freq_log": 8.375,
+            "id": 484,
+            "zone": 4
+        },
+        {
+            "vehicle": "BICYCLE",
+            "freq_log": 6.296,
+            "id": 485,
+            "zone": 4
+        },
+        {
+            "vehicle": "Bike",
+            "freq_log": 7.828,
+            "id": 486,
+            "zone": 4
+        },
+        {
+            "vehicle": "MOTORCYCLE",
+            "freq_log": 6.296,
+            "id": 487,
+            "zone": 4
+        },
+        {
+            "vehicle": "Motorcycle",
+            "freq_log": 7.828,
+            "id": 488,
+            "zone": 4
+        },
+        {
+            "vehicle": "OTHER",
+            "freq_log": 7.159,
+            "id": 489,
+            "zone": 4
+        },
+        {
+            "vehicle": "PASSENGER VEHICLE",
+            "freq_log": 15.745,
+            "id": 490,
+            "zone": 4
+        },
+        {
+            "vehicle": "PC",
+            "freq_log": 3.0,
+            "id": 491,
+            "zone": 4
+        },
+        {
+            "vehicle": "PICK-UP TRUCK",
+            "freq_log": 3.0,
+            "id": 492,
+            "zone": 4
+        },
+        {
+            "vehicle": "Pick-up Truck",
+            "freq_log": 8.375,
+            "id": 493,
+            "zone": 4
+        },
+        {
+            "vehicle": "SPORT UTILITY / STATION WAGON",
+            "freq_log": 12.888,
+            "id": 494,
+            "zone": 4
+        },
+        {
+            "vehicle": "STREE",
+            "freq_log": 3.0,
+            "id": 495,
+            "zone": 4
+        },
+        {
+            "vehicle": "Sedan",
+            "freq_log": 14.614,
+            "id": 496,
+            "zone": 4
+        },
+        {
+            "vehicle": "Station Wagon/Sport Utility Vehicle",
+            "freq_log": 12.997,
+            "id": 497,
+            "zone": 4
+        },
+        {
+            "vehicle": "Taxi",
+            "freq_log": 3.0,
+            "id": 498,
+            "zone": 4
+        },
+        {
+            "vehicle": "UNKNOWN",
+            "freq_log": 5.079,
+            "id": 499,
+            "zone": 4
+        },
+        {
+            "vehicle": "VAN",
+            "freq_log": 6.296,
+            "id": 500,
+            "zone": 4
+        },
+        {
+            "vehicle": "OTHER",
+            "freq_log": 5.079,
+            "id": 501,
+            "zone": 4
+        },
+        {
+            "vehicle": "PASSENGER VEHICLE",
+            "freq_log": 10.695,
+            "id": 502,
+            "zone": 4
+        },
+        {
+            "vehicle": "PICK-UP TRUCK",
+            "freq_log": 3.0,
+            "id": 503,
+            "zone": 4
+        },
+        {
+            "vehicle": "Pick-up Truck",
+            "freq_log": 5.079,
+            "id": 504,
+            "zone": 4
+        },
+        {
+            "vehicle": "SPORT UTILITY / STATION WAGON",
+            "freq_log": 7.159,
+            "id": 505,
+            "zone": 4
+        },
+        {
+            "vehicle": "Sedan",
+            "freq_log": 10.194,
+            "id": 506,
+            "zone": 4
+        },
+        {
+            "vehicle": "Station Wagon/Sport Utility Vehicle",
+            "freq_log": 7.159,
+            "id": 507,
+            "zone": 4
+        },
+        {
+            "vehicle": "VAN",
+            "freq_log": 3.0,
+            "id": 508,
+            "zone": 4
+        },
+        {
+            "vehicle": "PASSENGER VEHICLE",
+            "freq_log": 5.079,
+            "id": 509,
+            "zone": 4
+        },
+        {
+            "vehicle": "SPORT UTILITY / STATION WAGON",
+            "freq_log": 6.296,
+            "id": 510,
+            "zone": 4
+        },
+        {
+            "vehicle": "Sedan",
+            "freq_log": 5.079,
+            "id": 511,
+            "zone": 4
+        },
+        {
+            "vehicle": "PASSENGER VEHICLE",
+            "freq_log": 3.0,
+            "id": 512,
+            "zone": 4
+        },
+        {
+            "vehicle": "SPORT UTILITY / STATION WAGON",
+            "freq_log": 3.0,
+            "id": 513,
+            "zone": 4
+        },
+        {
+            "vehicle": "Station Wagon/Sport Utility Vehicle",
+            "freq_log": 3.0,
+            "id": 514,
+            "zone": 4
+        }
+    ],
+    "links": [
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 4.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 467,
+            "target": 484,
+            "weight": 6.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 496,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 499,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 489,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 480,
+            "target": 493,
+            "weight": 8.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 475,
+            "target": 502,
+            "weight": 6.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 6.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 473,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 4.0
+        },
+        {
+            "source": 480,
+            "target": 484,
+            "weight": 2.0
+        },
+        {
+            "source": 476,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 485,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 507,
+            "weight": 2.0
+        },
+        {
+            "source": 497,
+            "target": 507,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 492,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 483,
+            "target": 488,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 473,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 472,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 496,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 481,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 486,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 485,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 507,
+            "weight": 2.0
+        },
+        {
+            "source": 496,
+            "target": 507,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 505,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 494,
+            "target": 505,
+            "weight": 2.0
+        },
+        {
+            "source": 494,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 505,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 477,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 511,
+            "weight": 2.0
+        },
+        {
+            "source": 496,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 496,
+            "target": 511,
+            "weight": 2.0
+        },
+        {
+            "source": 506,
+            "target": 511,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 489,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 487,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 493,
+            "weight": 4.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 478,
+            "target": 502,
+            "weight": 4.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 4.0
+        },
+        {
+            "source": 470,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 470,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 497,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 487,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 6.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 6.0
+        },
+        {
+            "source": 480,
+            "target": 506,
+            "weight": 6.0
+        },
+        {
+            "source": 496,
+            "target": 506,
+            "weight": 6.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 501,
+            "weight": 2.0
+        },
+        {
+            "source": 494,
+            "target": 501,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 499,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 499,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 4.0
+        },
+        {
+            "source": 471,
+            "target": 493,
+            "weight": 10.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 8.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 507,
+            "weight": 4.0
+        },
+        {
+            "source": 497,
+            "target": 507,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 486,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 485,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 478,
+            "target": 502,
+            "weight": 6.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 6.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 4.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 478,
+            "target": 503,
+            "weight": 4.0
+        },
+        {
+            "source": 490,
+            "target": 503,
+            "weight": 4.0
+        },
+        {
+            "source": 480,
+            "target": 493,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 504,
+            "weight": 2.0
+        },
+        {
+            "source": 493,
+            "target": 504,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 502,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 509,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 512,
+            "weight": 4.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 4.0
+        },
+        {
+            "source": 490,
+            "target": 509,
+            "weight": 4.0
+        },
+        {
+            "source": 490,
+            "target": 512,
+            "weight": 4.0
+        },
+        {
+            "source": 502,
+            "target": 509,
+            "weight": 4.0
+        },
+        {
+            "source": 502,
+            "target": 512,
+            "weight": 4.0
+        },
+        {
+            "source": 509,
+            "target": 512,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 502,
+            "weight": 4.0
+        },
+        {
+            "source": 494,
+            "target": 502,
+            "weight": 4.0
+        },
+        {
+            "source": 468,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 468,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 495,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 8.0
+        },
+        {
+            "source": 479,
+            "target": 506,
+            "weight": 8.0
+        },
+        {
+            "source": 479,
+            "target": 511,
+            "weight": 8.0
+        },
+        {
+            "source": 479,
+            "target": 514,
+            "weight": 8.0
+        },
+        {
+            "source": 496,
+            "target": 506,
+            "weight": 8.0
+        },
+        {
+            "source": 496,
+            "target": 511,
+            "weight": 8.0
+        },
+        {
+            "source": 496,
+            "target": 514,
+            "weight": 8.0
+        },
+        {
+            "source": 506,
+            "target": 511,
+            "weight": 8.0
+        },
+        {
+            "source": 506,
+            "target": 514,
+            "weight": 8.0
+        },
+        {
+            "source": 511,
+            "target": 514,
+            "weight": 8.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 478,
+            "target": 489,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 505,
+            "weight": 2.0
+        },
+        {
+            "source": 489,
+            "target": 505,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 504,
+            "weight": 4.0
+        },
+        {
+            "source": 497,
+            "target": 504,
+            "weight": 4.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 480,
+            "target": 506,
+            "weight": 4.0
+        },
+        {
+            "source": 497,
+            "target": 506,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 8.0
+        },
+        {
+            "source": 479,
+            "target": 486,
+            "weight": 2.0
+        },
+        {
+            "source": 467,
+            "target": 484,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 509,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 509,
+            "weight": 2.0
+        },
+        {
+            "source": 502,
+            "target": 509,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 501,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 513,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 501,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 513,
+            "weight": 2.0
+        },
+        {
+            "source": 501,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 501,
+            "target": 513,
+            "weight": 2.0
+        },
+        {
+            "source": 510,
+            "target": 513,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 489,
+            "weight": 6.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 488,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 10.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 469,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 486,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 468,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 488,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 493,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 4.0
+        },
+        {
+            "source": 467,
+            "target": 484,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 469,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 488,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 493,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 472,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 488,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 478,
+            "target": 487,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 8.0
+        },
+        {
+            "source": 475,
+            "target": 500,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 466,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 507,
+            "weight": 2.0
+        },
+        {
+            "source": 496,
+            "target": 507,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 497,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 467,
+            "target": 484,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 500,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 505,
+            "weight": 4.0
+        },
+        {
+            "source": 500,
+            "target": 505,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 474,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 482,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 482,
+            "target": 500,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 8.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 473,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 467,
+            "target": 484,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 494,
+            "target": 502,
+            "weight": 2.0
+        },
+        {
+            "source": 494,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 502,
+            "target": 510,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 477,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 506,
+            "weight": 4.0
+        },
+        {
+            "source": 496,
+            "target": 506,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 4.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 4.0
+        },
+        {
+            "source": 480,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 502,
+            "weight": 4.0
+        },
+        {
+            "source": 490,
+            "target": 502,
+            "weight": 4.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 12.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 498,
+            "weight": 2.0
+        },
+        {
+            "source": 480,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 496,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 496,
+            "target": 506,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 486,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 467,
+            "target": 491,
+            "weight": 2.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 6.0
+        },
+        {
+            "source": 475,
+            "target": 508,
+            "weight": 6.0
+        },
+        {
+            "source": 490,
+            "target": 508,
+            "weight": 6.0
+        },
+        {
+            "source": 479,
+            "target": 497,
+            "weight": 2.0
+        },
+        {
+            "source": 478,
+            "target": 494,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 479,
+            "target": 496,
+            "weight": 2.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 4.0
+        },
+        {
+            "source": 475,
+            "target": 490,
+            "weight": 8.0
+        },
+        {
+            "source": 475,
+            "target": 505,
+            "weight": 8.0
+        },
+        {
+            "source": 490,
+            "target": 505,
+            "weight": 8.0
+        }
+    ]
+}
