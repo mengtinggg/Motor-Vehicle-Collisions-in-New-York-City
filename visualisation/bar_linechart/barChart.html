@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Charts</title>
+    <link href="../../css/loader.css" rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+        }
+
+        #barchart1,
+        #barchart2,
+        #barchart3 {
+            background-color: whitesmoke;
+            font: 10px 'Helvetica Neue';
+        }
+    </style>
+
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="text/javascript" src='load_data.js'></script>
+    <script type="text/javascript" src='barChart.js'></script>
+
+    <br>
+    <div class="buttons">
+        <button id="1_but" onclick="makeChart1()" type="button" class="btn btn-outline-dark" aria-pressed="true">
+            STATEN ISLAND
+        </button>
+        <button id="2_but" onclick="makeChart2()" type="button" class="btn btn-outline-dark" aria-pressed="true">
+            BROOKLYN
+        </button>
+        <button id="3_but" onclick="makeChart3()" type="button" class="btn btn-outline-dark" aria-pressed="true">
+            BRONX
+        </button>
+        <button id="4_but" onclick="makeChart4()" type="button" class="btn btn-outline-dark" aria-pressed="true">
+            MANHATTAN
+        </button>
+        <button id="5_but" onclick="makeChart5()" type="button" class="btn btn-outline-dark" aria-pressed="true">
+            QUEENS
+        </button>
+    </div>
+    <div id="loader"></div>
+    <div style="display:none;" id="mapviz" class="animate-bottom">
+        <br>
+        <h6 id="title1"></h6>
+        <div id="barchart1">
+        </div>
+    
+        <br>
+        <h6 id="title2"></h6>
+        <div id="barchart2">
+        </div>
+    
+        <br>
+        <h6 id="title3"></h6>
+        <div id="barchart3">
+        </div>
+    </div>
+
+</body>
+
+</html>

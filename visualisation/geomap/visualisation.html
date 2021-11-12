@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA Project</title>
+    <!-- ----------------------------- Slider ----------------------------------->
+    <link rel="stylesheet" href="slider/rSlider.min.css">
+    <script src="slider/rSlider.min.js"></script>
+    <!--------------------------------- Loader ------------------------------- -->
+    <style>
+        #loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;        
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+        }
+        /* Add animation to "page content" */
+        .animate-bottom {
+        position: relative;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: 1s;
+        animation-name: animatebottom;
+        animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+        from { bottom:-100px; opacity:0 } 
+        to { bottom:0px; opacity:1 }
+        }
+
+        @keyframes animatebottom { 
+        from{ bottom:-100px; opacity:0 } 
+        to{ bottom:0; opacity:1 }
+        }
+
+        #myDiv {
+        display: none;
+        text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <h1 style = "text-align: center;">Casuality Rate and Collisions Count in New York City Across Boroughs</h1>
+
+    
+
+    <div id="loader"></div>
+    <div style="display:none;" id="mapviz" class="animate-bottom">
+        <h3 style = "text-align: center;">Year Range From:</h3>
+        <div style = "margin-left: 20%; margin-right: 20%;">
+            <!-- <label for="sampleSlider">Year Range from: </label> -->
+            <input type="text" id="sampleSlider" />
+        </div>
+    </div>
+
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+
+    <script type="text/javascript" src = 'load_data.js'></script>
+    <script type="text/javascript" src = 'visualisation.js'></script>
+</body>
+</html>
