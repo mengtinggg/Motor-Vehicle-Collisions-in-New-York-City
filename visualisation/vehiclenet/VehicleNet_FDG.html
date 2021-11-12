@@ -41,8 +41,6 @@
 
     .btn {
       margin: 3px;
-      /* padding-top: 3px;
-      padding-bottom: 3px; */
     }
   </style>
 </head>
@@ -50,36 +48,21 @@
 <body>
   <h1>Force Directed Graph - Vehicle Net</h1>
   <h2>Collision Relationship among Different Types of Vehicles</h2>
-  <!-- <section> -->
-  <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <button class="btn btn-primary active">
-        <input type="radio" name="options" id="option1" autocomplete="off" checked> BRONX
-      </button>
-      <button class="btn btn-success">
-        <input type="radio" name="options" id="option2" autocomplete="off"> BROOKLYN
-      </button>
-      <button class="btn btn-warning" style="background-color: orange;">
-        <input type="radio" name="options" id="option2" autocomplete="off"> MANHATTEN
-      </button>
-      <button class="btn btn-danger">
-        <input type="radio" name="options" id="option3" autocomplete="off"> QUEENS
-      </button>
-      <button class="btn btn-secondary">
-        <input type="radio" name="options" id="option3" autocomplete="off"> STATEN ISLAND
-      </button> -->
   <button type="button" class="btn btn-dark" value='all' onclick="makeChart(this.value);">ALL</button>
   <button type="button" class="btn btn-primary" value='BRONX' onclick="makeChart(this.value);">BRONX</button>
   <button type="button" class="btn btn-success" value='MANHATTAN' onclick="makeChart(this.value);">MANHATTAN</button>
   <button type="button" class="btn btn-warning" value='BROOKLYN' onclick="makeChart(this.value);">BROOKLYN</button>
   <button type="button" class="btn btn-danger" value='QUEENS' onclick="makeChart(this.value);">QUEENS</button>
-  <button type="button" class="btn btn-secondary" value='STATEN ISLAND' onclick="makeChart(this.value);">STATEN
-    ISLAND</button>
-  <!-- </div>
-  </section> -->
+  <button type="button" class="btn btn-secondary" value='STATEN ISLAND' onclick="makeChart(this.value);">STATEN ISLAND</button>
 
   <script>
     // declare url to retrieve json file
-    var DATA_URL;
+    var DATA_URL = '../../data/json/nodeLinks.json';
+
+    // declare Link Distance
+    // When individual graphs are visualised, there are lesser datapoints
+    // Hence this value can be increased without adding to visual clutter
+    var linkDistance = 220;
 
     //Set margins and sizes
     var margin = {
@@ -116,37 +99,28 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      DATA_URL = `../../data/json/${val}_nodeLinks.json`;
-      console.log(DATA_URL);
-
       //Load External Data
       d3.json(DATA_URL, function (dataset) {
         //Extract data from dataset
-        var nodes = dataset.nodes,
-          links = dataset.links;
+        var nodes = dataset.nodes;
+        var links = dataset.links;
         console.log(nodes);
         console.log(links);
 
-        // // my code -> Can only product BRONX graph
-        // if (val !== 'all') {
-        //   nodes = nodes.filter(obj => obj.zone == zonesObj[val]);
-        //   console.log('resNodes');
-        //   console.log(nodes)
+        // Replace nodes and links according to variable val (onClick value that represents borough)
+        if (val !== 'all') {
+          nodes = nodes.filter(obj => obj.zone == zonesObj[val]);
+          console.log('resNodes');
+          console.log(nodes)
 
-        //   links = links.filter(({ source, target }) => nodes.some(include => include.id === source || include.id === target));
-        //   console.log('resLinks');
-        //   console.log(links)
-        // };
+          links = links.filter(({ source, target }) => nodes.some(include => include.id === source || include.id === target));
+          console.log('resLinks');
+          console.log(links)
 
-        // // shao your code here
-        // if (val !== 'all') {
-        //   nodes = nodes.filter(obj => obj.zone == zonesObj[val]).map(obj => obj.id) // get array of ID of particular zone
-        //   links = links.filter(item => nodes.includes(item.source) || nodes.includes(item.target)) // filter links.source and target
-        //   console.log('resNodes');
-        //   console.log(nodes);
-        //   console.log('resLinks');
-        //   console.log(links);
-        // }
+          // Increase link distance between nodes so nodes are further apart
+          // text can be read easier
+          linkDistance = 300
+        };
 
         //Create Force Layout
         var force = d3.layout.force()
@@ -155,7 +129,25 @@
           .links(links)
           .gravity(0.1) // the larger, the closer
           .charge(-140) // the larger, the closer
-          .linkDistance(220);
+          .linkDistance(linkDistance);
+
+        // Make sure the 'source' and 'target' reference the node IDs instead of index-based node references in links
+        var l, n, _i, _j, _len, _len2, _ref, _ref2;
+        _ref = dataset.links;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          l = _ref[_i];
+          _ref2 = dataset.nodes;
+          for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
+            n = _ref2[_j];
+            if (l.source === n.id) {
+              l.source = n;
+              continue;
+            }
+            if (l.target === n.id) {
+              l.target = n;
+              continue;
+            }}
+        };
 
         //Add links to SVG
         var link = svgElement.selectAll(".link")
@@ -164,6 +156,7 @@
           .append("line")
           .attr("stroke-width", function (d) { return d.weight / 7; })
           .attr("class", "link");
+
         //Add nodes to SVG
         var node = svgElement.selectAll(".node")
           .data(nodes)
@@ -171,12 +164,14 @@
           .append("g")
           .attr("class", "node")
           .call(force.drag);
+
         //Add labels to each node
         var label = node.append("text")
           .attr("dx", 15)
           .attr("dy", "0.35em")
           .attr("font-size", function (d) { return d.freq_log * 1.5 > 9 ? d.freq_log * 1.5 : 9; })
           .text(function (d) { return d.vehicle; });
+
         //Add circles to each node
         var circle = node.append("circle")
           .attr("r", function (d) { return d.freq_log / 2 > 4 ? d.freq_log / 2 : 4; })
@@ -202,6 +197,7 @@
             .style("text-anchor", "start")
             .text(function (d, i) { return Object.entries(zonesObj)[i][0]; });
         }
+
         //This function will be executed for every tick of force layout 
         force.on("tick", function () {
           //Set X and Y of node
@@ -222,15 +218,6 @@
       });
     };
   </script>
-  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
