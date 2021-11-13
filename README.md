@@ -22,11 +22,11 @@ These visualisations aim to to answer this problem statements: `How can we produ
 
 ### Prerequisites & Installation
 The followings folders are crucial for the deployment of the visualization website:
-+ assets (contain bg of the homepage)
++ assets (contains the background of the homepage)
 + data (contains raw and processed data files needed for the visualisations)
 + css (contains css for the homepage as well as loading icon)
-+ visulisation (stores each visualisation codes)
-+ index.html (homepage)
++ visulisation (stores the codes for each visualisations)
++ index.html (homepage/ landing page)
 
 Before running the codes, you will need to download the raw Vehicle Collisions dataset which is too big to be pushed to Github.
 
