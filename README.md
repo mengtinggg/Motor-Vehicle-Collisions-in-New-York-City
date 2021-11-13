@@ -35,6 +35,7 @@ Before running the codes, you will need to download the raw Vehicle Collisions d
    Export > CSV
    ```
 2. Place the file in the `data` folder.
+3. Run `visualisation/vehiclenet/pyscript/FDG_eda.py` to generate `nodeLinks.json`, `relationship.json` and `vehicle_influence.json`. These 3 json files will be generated in the data/json folder thereafter and are required for the visualization of the VehicleNet. This process may be skipped if the json files are already present in the data/json folder.
 
 
 ### Usage
