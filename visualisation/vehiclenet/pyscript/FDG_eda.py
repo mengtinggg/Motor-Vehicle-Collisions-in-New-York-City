@@ -7,9 +7,9 @@ print('starting script')
 
 # ===== URL Links ==== #
 raw_data_file = "../../../data/Motor_Vehicle_Collisions_-_Crashes.csv"
-vehicle_influence_json = "json/vehicle_influence.json"
-relationship_json = "json/relationship.json"
-output_nodelink_json = "json/nodeLinks.json"
+vehicle_influence_json = "../../../data/json/vehicle_influence.json"
+relationship_json = "../../../data/json/relationship.json"
+output_nodelink_json = "../../../data/json/nodeLinks.json"
 
 # ===== READ CSV ===== #
 df = pd.read_csv(raw_data_file)

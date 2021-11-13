@@ -1,4 +1,4 @@
-# Team X VA Project
+# Team 6 VA Project
 <details>
   <summary>Table of Contents</summary>
   <ol>
