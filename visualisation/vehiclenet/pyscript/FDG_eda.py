@@ -38,7 +38,7 @@ filtered = filtered[filtered['weight'] > 0]
 # Dataset is stratified by borough to ensure no biasness
 # Sampling is done because when producing the relastionships between the collided vehicles, not only is it computationally expensive, it also takes very long for the visualisation to load
 from sklearn.model_selection import train_test_split
-filtered, _ = train_test_split(filtered, test_size=0.97, stratify=filtered[['BOROUGH']], random_state = 42)
+filtered, _ = train_test_split(filtered, test_size=0.95, stratify=filtered[['BOROUGH']], random_state = 42)
 
 print(filtered['weight'].unique())
 
