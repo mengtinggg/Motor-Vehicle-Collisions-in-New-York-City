@@ -14,7 +14,7 @@
 ## About The Project
 This repository contains the source code for the project titled: `Motor Vehicle Collisions in New York City`. This project is for the course IS428 - Visual Analytics for Bus. Int. - G1 AY 2021 - 2022. 
 
-These visualisations aim to to answer this problem statements: `How can we produce useful visualisations to identify critical collisions dedicated to improving traffic safety?`
+These visualisations aim to answer this problem statements: `How can we produce useful visualisations to identify critical collisions dedicated to improving traffic safety?`
 
 ### Built With
 * [D3 Javascript](https://d3js.org/)
